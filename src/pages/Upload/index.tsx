@@ -363,7 +363,7 @@ const UploadPage: React.FC = () => {
                       {tagsList
                         .filter(tag => tag.category === category)
                         .map(tag => (
-                          <Option key={tag.value} value={tag.value}>
+                          <Option key={tag.label} value={tag.label}>
                             {tag.label}
                           </Option>
                         ))}
@@ -537,7 +537,7 @@ const UploadPage: React.FC = () => {
                 <div className="confirm-label">{t('form.tags.label')}:</div>
                 <div className="confirm-value confirm-tags">
                   {scriptData.tags.map(tag => {
-                    const tagObj = tagsList.find(t => t.value === tag);
+                    const tagObj = tagsList.find(t => t.label === tag);
                     return (
                       <Badge 
                         key={tag} 
