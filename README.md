@@ -52,8 +52,8 @@ yarn dev
 ```
 
 5. 在浏览器中访问 `http://localhost:5173`
-   - 上传页面：`http://localhost:5173/upload`
-   - 脚本目录页面：`http://localhost:5173/`
+   - 上传页面：`http://localhost:5173/#/upload`
+   - 脚本目录页面：`http://localhost:5173/#/`
 
 ### 构建部署
 
@@ -65,6 +65,57 @@ yarn build
 ```
 
 2. 部署生成的`dist`文件夹到您的Web服务器或GitHub Pages
+
+### 部署到 GitHub Pages
+
+本项目支持自动部署到 GitHub Pages，以下是详细步骤：
+
+#### 方法一：使用 GitHub Actions 自动部署（推荐）
+
+1. 确保项目中包含 `.github/workflows/deploy.yml` 文件，该文件配置了自动部署流程
+
+2. 在 GitHub 仓库设置中启用 GitHub Pages：
+   - 进入仓库 -> Settings -> Pages
+   - Source 选择 "GitHub Actions"
+
+3. 在仓库的 Secrets 中添加必要的环境变量：
+   - 进入仓库 -> Settings -> Secrets and variables -> Actions
+   - 添加以下 Secrets：
+     - `VITE_GITHUB_TOKEN`: GitHub API 访问令牌
+     - `VITE_GITHUB_OWNER`: GitHub 用户名
+     - `VITE_GITHUB_REPO`: 存储脚本的仓库名
+     - `VITE_GITHUB_BRANCH`: 分支名（通常是 main）
+     - `VITE_PASSWORD_SALT`: 密码加密盐
+
+4. 推送代码到 main 分支，GitHub Actions 将自动构建并部署项目
+
+#### 方法二：手动部署
+
+1. 修改 `vite.config.ts` 文件中的 base 配置，设置为您的仓库名：
+```typescript
+export default defineConfig({
+  // ...其他配置
+  base: '/your-repo-name/', // 替换为您的仓库名
+  // ...
+});
+```
+
+2. 构建项目：
+```bash
+npm run build
+# 或使用yarn
+yarn build
+```
+
+3. 将 `dist` 目录的内容推送到 GitHub 仓库的 `gh-pages` 分支
+
+#### 注意事项
+
+1. **路由配置**：本项目使用 HashRouter 而非 BrowserRouter，以确保在 GitHub Pages 上正常工作。这意味着 URL 会包含 `#` 符号，例如 `https://username.github.io/repo-name/#/upload`。
+
+2. **静态资源路径**：确保所有静态资源引用使用相对路径或 `import.meta.env.BASE_URL` 前缀，避免使用绝对路径（以 `/` 开头）。
+
+3. **自定义域名**：如果您使用自定义域名，请在 `public` 目录中添加 `CNAME` 文件。
 
 ## GitHub Token说明
 
@@ -155,13 +206,15 @@ JSON文件包含所有脚本信息，包括ID、名称、作者、版本、标�
 
 - **使用`json`参数**：适用于较短的数据
   ```
-  https://your-site.com/upload?json={"id":"script-001","name":"测试脚本","content":"console.log('Hello')"}
+  https://your-site.com/#/upload?json={"id":"script-001","name":"测试脚本","content":"console.log('Hello')"}
   ```
 
 - **使用`data`参数**：适用于较长的数据，使用base64编码
   ```
-  https://your-site.com/upload?data=eyJpZCI6InNjcmlwdC0wMDEiLCJuYW1lIjoi5rWL6K+V6ISa5pysIiwiY29udGVudCI6ImNvbnNvbGUubG9nKCdIZWxsbycpIn0=
+  https://your-site.com/#/upload?data=eyJpZCI6InNjcmlwdC0wMDEiLCJuYW1lIjoi5rWL6K+V6ISa5pysIiwiY29udGVudCI6ImNvbnNvbGUubG9nKCdIZWxsbycpIn0=
   ```
+
+注意：由于项目使用 HashRouter，URL 中包含 `#` 符号，参数位于哈希部分之后。
 
 ### 2. postMessage API方式
 
@@ -180,7 +233,7 @@ const scriptData = {
 // 获取iframe引用
 const iframe = document.getElementById('script-market-iframe');
 // 发送消息
-iframe.contentWindow.postMessage(scriptData, 'https://your-script-market-url.com/upload');
+iframe.contentWindow.postMessage(scriptData, 'https://your-script-market-url.com/#/upload');
 ```
 
 ### 支持的字段
@@ -216,6 +269,7 @@ iframe.contentWindow.postMessage(scriptData, 'https://your-script-market-url.com
 - Ant Design - UI组件库
 - i18next - 国际化
 - Octokit - GitHub API客户端
+- React Router - 客户端路由（使用 HashRouter 模式）
 
 ## 贡献指南
 
