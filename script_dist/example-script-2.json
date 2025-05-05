@@ -1,0 +1,18 @@
+{
+  "id": "example-script-2",
+  "password": "hashed-password-value",
+  "name": "示例脚本2",
+  "author": "测试作者2",
+  "version": "1.2.0",
+  "tags": ["测试"],
+  "content": "console.log('这是一个示例脚本2');",
+  "info": "这是一个用于测试的示例脚本2",
+  "buttons": [
+    {
+      "name": "运行",
+      "visible": false
+    }
+  ],
+  "createdAt": "2025-05-06T13:42:00Z",
+  "updatedAt": "2025-05-07T13:42:00Z"
+}

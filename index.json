@@ -1,7 +1,19 @@
 {
-  "total": 1,
-  "lastUpdated": "2025-05-05T13:45:37.869Z",
+  "total": 2,
+  "lastUpdated": "2025-05-05T16:01:43.225Z",
   "scripts": [
+    {
+      "id": "example-script-2",
+      "name": "示例脚本2",
+      "author": "测试作者2",
+      "tags": [
+        "测试"
+      ],
+      "version": "1.2.0",
+      "updatedAt": "2025-05-07T13:42:00Z",
+      "createdAt": "2025-05-06T13:42:00Z",
+      "sha": "9d8a7228c672bead1fdd0002bf7847c1ec89f10b440196c9d3ae6bc4b9ad5c89"
+    },
     {
       "id": "example-script",
       "name": "示例脚本",

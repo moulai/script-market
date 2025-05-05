@@ -145,6 +145,91 @@ const zh = {
     buttonIdRequired: '按钮ID为必填项',
     buttonNameRequired: '按钮名称为必填项',
   },
+  
+  // 脚本市场页面
+  scriptMarket: {
+    title: '脚本市场',
+    pageTitle: '脚本目录',
+    
+    // 搜索和筛选
+    search: {
+      placeholder: '搜索脚本名称'
+    },
+    filter: {
+      tags: '选择标签',
+      author: '搜索作者'
+    },
+    sort: {
+      label: '排序',
+      updatedAt: '最近更新',
+      createdAt: '创建时间',
+      name: '名称'
+    },
+    view: {
+      card: '卡片视图',
+      table: '表格视图'
+    },
+    
+    // 卡片视图
+    card: {
+      viewDetails: '查看详情',
+      updated: '更新于',
+      version: '版本'
+    },
+    
+    // 表格视图
+    table: {
+      name: '名称',
+      author: '作者',
+      tags: '标签',
+      version: '版本',
+      updatedAt: '更新时间',
+      action: '操作',
+      viewDetails: '查看详情',
+      download: '下载脚本'
+    },
+    
+    // 分页
+    pagination: {
+      total: '共',
+      items: '项'
+    },
+    
+    // 详情模态框
+    detail: {
+      title: '脚本详情',
+      author: '作者',
+      version: '版本',
+      createdAt: '创建时间',
+      updatedAt: '更新时间',
+      content: '脚本内容',
+      buttons: '按钮配置',
+      visible: '可见',
+      invisible: '隐藏',
+      download: '下载脚本',
+      copy: '复制内容',
+      downloadSuccess: '下载成功',
+      downloadFailed: '下载失败',
+      copySuccess: '复制成功',
+      copyFailed: '复制失败',
+      noData: '没有找到脚本数据'
+    },
+    
+    // 页脚
+    footer: {
+      total: '脚本总数',
+      lastUpdated: '最后更新',
+      copyright: '脚本市场'
+    },
+    
+    // 错误信息
+    error: {
+      title: '加载错误'
+    },
+    
+    // 空状态
+    empty: '没有找到匹配的脚本'
+  }
 };
 
-export default zh; 
+export default zh;

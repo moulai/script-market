@@ -1,20 +1,21 @@
-# 脚本市场上传页面
+# 脚本市场
 
-一个简洁明了的静态网页项目，用于上传脚本到GitHub仓库。
+一个简洁明了的静态网页项目，用于上传脚本到GitHub仓库以及浏览、下载脚本。
 
 ## 功能特点
 
-- 📝 脚本信息上传界面（ID、密码、名称、作者、版本等）
+- 📚 脚本目录浏览页面，支持筛选和搜索功能（访问端口：/）
+- 📝 脚本上传界面（ID、密码、名称、作者、版本等）（访问端口：/upload）
+- 🔍 脚本详情查看，包括代码预览和详细信息
+- ⬇️ 脚本一键下载功能
 - 🌐 支持多语言（中文/英文）
 - 📱 响应式设计，适配各种设备屏幕
-- 🔄 使用GitHub REST API上传数据
+- 🔄 使用GitHub REST API上传和获取数据
 - 🧩 模块化设计，易于扩展和维护
 - 🎨 美观直观的用户界面
-- 🔑 安全的密码管理机制
+- 🔑 简单但有效的密码管理机制
 
 ## 项目预览
-
-![上传表单](./docs/form-preview.png)
 
 ## 快速开始
 
@@ -51,6 +52,8 @@ yarn dev
 ```
 
 5. 在浏览器中访问 `http://localhost:5173`
+   - 上传页面：`http://localhost:5173/upload`
+   - 脚本目录页面：`http://localhost:5173/`
 
 ### 构建部署
 
@@ -138,7 +141,7 @@ const passwordSalt = import.meta.env.VITE_PASSWORD_SALT || 'your_password_salt';
 
 JSON文件包含所有脚本信息，包括ID、名称、作者、版本、标签、内容、按钮配置等。
 
-## 表单预填充功能
+## 上传页面的表单预填充功能
 
 脚本市场上传页面支持通过外部系统预填充表单数据，方便从其他系统直接调用并自动填写表单。
 
@@ -152,12 +155,12 @@ JSON文件包含所有脚本信息，包括ID、名称、作者、版本、标�
 
 - **使用`json`参数**：适用于较短的数据
   ```
-  https://your-site.com/?json={"id":"script-001","name":"测试脚本","content":"console.log('Hello')"}
+  https://your-site.com/upload?json={"id":"script-001","name":"测试脚本","content":"console.log('Hello')"}
   ```
 
 - **使用`data`参数**：适用于较长的数据，使用base64编码
   ```
-  https://your-site.com/?data=eyJpZCI6InNjcmlwdC0wMDEiLCJuYW1lIjoi5rWL6K+V6ISa5pysIiwiY29udGVudCI6ImNvbnNvbGUubG9nKCdIZWxsbycpIn0=
+  https://your-site.com/upload?data=eyJpZCI6InNjcmlwdC0wMDEiLCJuYW1lIjoi5rWL6K+V6ISa5pysIiwiY29udGVudCI6ImNvbnNvbGUubG9nKCdIZWxsbycpIn0=
   ```
 
 ### 2. postMessage API方式
@@ -177,7 +180,7 @@ const scriptData = {
 // 获取iframe引用
 const iframe = document.getElementById('script-market-iframe');
 // 发送消息
-iframe.contentWindow.postMessage(scriptData, 'https://your-script-market-url.com');
+iframe.contentWindow.postMessage(scriptData, 'https://your-script-market-url.com/upload');
 ```
 
 ### 支持的字段
@@ -194,6 +197,17 @@ iframe.contentWindow.postMessage(scriptData, 'https://your-script-market-url.com
 - `info`: 备注信息
 - `buttons`: 按钮配置数组
 
+## 脚本目录页面
+
+脚本目录页面提供了一个简洁的界面，用于浏览、搜索和下载脚本。
+
+### 主要功能
+
+- **筛选功能**：支持按标签、作者、名称等多维度筛选
+- **搜索功能**：快速查找所需脚本
+- **详情查看**：点击脚本卡片或行可查看脚本的详细信息，包括代码预览
+- **下载功能**：一键下载所需脚本
+
 ## 技术栈
 
 - React - 用户界面库
@@ -209,4 +223,4 @@ iframe.contentWindow.postMessage(scriptData, 'https://your-script-market-url.com
 
 ## 许可证
 
-MIT 
+MIT

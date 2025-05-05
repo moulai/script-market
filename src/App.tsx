@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import theme from './theme';
 import UploadPage from './pages/Upload';
 import ResultPage from './pages/Result';
+import ScriptMarket from './pages/ScriptMarket';
 import './locales/i18n';
 
 const App: React.FC = () => {
@@ -20,8 +21,9 @@ const App: React.FC = () => {
     <ConfigProvider theme={theme} locale={antdLocale}>
       <Router>
         <Routes>
-          <Route path="/" element={<UploadPage />} />
+          <Route path="/upload" element={<UploadPage />} />
           <Route path="/result" element={<ResultPage />} />
+          <Route path="/" element={<ScriptMarket />} />
         </Routes>
       </Router>
     </ConfigProvider>

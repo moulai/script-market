@@ -144,6 +144,91 @@ const en = {
     required: 'This field is required',
     buttonNameRequired: 'Button name is required',
   },
+  
+  // Script Market Page
+  scriptMarket: {
+    title: 'Script Market',
+    pageTitle: 'Script Directory',
+    
+    // Search and Filter
+    search: {
+      placeholder: 'Search script name'
+    },
+    filter: {
+      tags: 'Select tags',
+      author: 'Search author'
+    },
+    sort: {
+      label: 'Sort',
+      updatedAt: 'Recently updated',
+      createdAt: 'Creation time',
+      name: 'Name'
+    },
+    view: {
+      card: 'Card view',
+      table: 'Table view'
+    },
+    
+    // Card view
+    card: {
+      viewDetails: 'View details',
+      updated: 'Updated',
+      version: 'Version'
+    },
+    
+    // Table view
+    table: {
+      name: 'Name',
+      author: 'Author',
+      tags: 'Tags',
+      version: 'Version',
+      updatedAt: 'Update time',
+      action: 'Action',
+      viewDetails: 'View details',
+      download: 'Download'
+    },
+    
+    // Pagination
+    pagination: {
+      total: 'Total',
+      items: 'items'
+    },
+    
+    // Detail modal
+    detail: {
+      title: 'Script details',
+      author: 'Author',
+      version: 'Version',
+      createdAt: 'Created at',
+      updatedAt: 'Updated at',
+      content: 'Script content',
+      buttons: 'Button configuration',
+      visible: 'Visible',
+      invisible: 'Hidden',
+      download: 'Download script',
+      copy: 'Copy content',
+      downloadSuccess: 'Download successful',
+      downloadFailed: 'Download failed',
+      copySuccess: 'Copy successful',
+      copyFailed: 'Copy failed',
+      noData: 'No script data found'
+    },
+    
+    // Footer
+    footer: {
+      total: 'Total scripts',
+      lastUpdated: 'Last updated',
+      copyright: 'Script Market'
+    },
+    
+    // Error messages
+    error: {
+      title: 'Loading error'
+    },
+    
+    // Empty state
+    empty: 'No matching scripts found'
+  }
 };
 
-export default en; 
+export default en;
