@@ -227,7 +227,10 @@ const en = {
     },
     
     // Empty state
-    empty: 'No matching scripts found'
+    empty: 'No matching scripts found',
+    
+    // Refresh button
+    refresh: 'Refresh'
   }
 };
 
