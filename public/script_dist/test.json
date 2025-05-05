@@ -1,0 +1,25 @@
+{
+  "id": "test",
+  "password": "48753aa26e7919c172f15639706c74fe4703e50409c44fefd406540aed1b7fcc",
+  "name": "test",
+  "author": "test",
+  "version": "2025.05.06.0146",
+  "tags": [
+    "data-processing",
+    "javascript"
+  ],
+  "content": "test",
+  "info": "test it",
+  "buttons": [
+    {
+      "name": "test1",
+      "visible": false
+    },
+    {
+      "name": "test2",
+      "visible": true
+    }
+  ],
+  "createdAt": "2025-05-05T17:46:26.575Z",
+  "updatedAt": "2025-05-05T17:46:26.575Z"
+}
