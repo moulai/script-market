@@ -3,23 +3,22 @@
   "password": "48753aa26e7919c172f15639706c74fe4703e50409c44fefd406540aed1b7fcc",
   "name": "test",
   "author": "test",
-  "version": "2025.05.06.0146",
+  "version": "2025.05.06.0155",
   "tags": [
-    "data-processing",
-    "javascript"
+    "data-processing"
   ],
-  "content": "test",
-  "info": "test it",
+  "content": "test update",
+  "info": "test update it",
   "buttons": [
     {
       "name": "test1",
-      "visible": false
+      "visible": true
     },
     {
       "name": "test2",
-      "visible": true
+      "visible": false
     }
   ],
   "createdAt": "2025-05-05T17:46:26.575Z",
-  "updatedAt": "2025-05-05T17:46:26.575Z"
+  "updatedAt": "2025-05-05T17:55:56.592Z"
 }
