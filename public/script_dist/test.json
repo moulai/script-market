@@ -3,22 +3,13 @@
   "password": "48753aa26e7919c172f15639706c74fe4703e50409c44fefd406540aed1b7fcc",
   "name": "test",
   "author": "test",
-  "version": "2025.05.06.0155",
+  "version": "2025.05.06.0213",
   "tags": [
-    "data-processing"
+    "ui-enhancement"
   ],
-  "content": "test update",
-  "info": "test update it",
-  "buttons": [
-    {
-      "name": "test1",
-      "visible": true
-    },
-    {
-      "name": "test2",
-      "visible": false
-    }
-  ],
+  "content": "test update update",
+  "info": "test update update",
+  "buttons": [],
   "createdAt": "2025-05-05T17:46:26.575Z",
-  "updatedAt": "2025-05-05T17:55:56.592Z"
+  "updatedAt": "2025-05-05T18:13:54.560Z"
 }
