@@ -41,6 +41,6 @@ jobs:
             exit 0
           fi
           
-          git add index.json
-          git commit -m "自动更新 index.json [skip ci]"
+          git add index.json public/index.json
+          git commit -m "[CI] Auto update index.json [workflow_dispatch]"
           git push

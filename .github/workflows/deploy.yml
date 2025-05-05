@@ -3,6 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'index.json'
+      - 'public/index.json'
+      - 'src/**'
+      - 'public/**'
+      - '!public/script_dist/**'  # 排除这个路径，因为它已经由generate-index.yml处理
   workflow_dispatch:
 
 permissions:
