@@ -1,6 +1,6 @@
 {
   "total": 3,
-  "lastUpdated": "2025-05-05T18:14:07.506Z",
+  "lastUpdated": "2025-05-05T18:25:08.872Z",
   "scripts": [
     {
       "id": "example-script-2",
@@ -19,12 +19,12 @@
       "name": "test",
       "author": "test",
       "tags": [
-        "ui-enhancement"
+        "实用工具"
       ],
-      "version": "2025.05.06.0213",
-      "updatedAt": "2025-05-05T18:13:54.560Z",
+      "version": "2025.05.06.0224",
+      "updatedAt": "2025-05-05T18:24:56.449Z",
       "createdAt": "2025-05-05T17:46:26.575Z",
-      "sha": "28c1ffa37598d71570472f454a667a5673e997c927fedac3ce35f524b5b0cbf9"
+      "sha": "c33220a9a2789b2d2059aa1884c01d64c7020210ad5ee895d4e6aa967d1a810d"
     },
     {
       "id": "example-script",
