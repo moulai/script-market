@@ -42,5 +42,5 @@ jobs:
           fi
           
           git add index.json public/index.json
-          git commit -m "[CI] Auto update index.json [workflow_dispatch]"
+          git commit -m "[CI] Auto update index.json"
           git push
