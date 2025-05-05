@@ -137,7 +137,7 @@ const passwordSalt = import.meta.env.VITE_PASSWORD_SALT || 'your_password_salt';
 
 ## 文件存储结构
 
-上传的脚本将以JSON文件的形式存储在指定的GitHub仓库的`script_dist`文件夹中。文件命名使用脚本ID，格式为：`{scriptId}.json`。
+上传的脚本将以JSON文件的形式存储在指定的GitHub仓库的`public/script_dist`文件夹中。文件命名使用脚本ID，格式为：`{scriptId}.json`。
 
 JSON文件包含所有脚本信息，包括ID、名称、作者、版本、标签、内容、按钮配置等。
 

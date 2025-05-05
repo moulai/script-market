@@ -7,8 +7,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 扫描script_dist目录中的所有.json文件
-const script_distDir = path.join(__dirname, 'script_dist');
+// 扫描public/script_dist目录中的所有.json文件
+const script_distDir = path.join(__dirname, 'public', 'script_dist');
 const files = fs.readdirSync(script_distDir)
   .filter(file => file.endsWith('.json') && file !== 'index.json');
 
@@ -53,6 +53,14 @@ const index = {
   scripts
 };
 
-// 写入index.json
+// 写入index.json到项目根目录
 fs.writeFileSync(path.join(__dirname, 'index.json'), JSON.stringify(index, null, 2));
-console.log('成功生成 index.json');
+
+// 同时写入到public目录，确保在构建时被复制到dist目录
+const publicDir = path.join(__dirname, 'public');
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir, { recursive: true });
+}
+fs.writeFileSync(path.join(publicDir, 'index.json'), JSON.stringify(index, null, 2));
+
+console.log('成功生成 index.json（同时写入到项目根目录和public目录）');

@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'script_dist/**'
+      - 'public/script_dist/**'
   workflow_dispatch:
 
 permissions:

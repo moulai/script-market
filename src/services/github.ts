@@ -37,7 +37,7 @@ class GitHubService {
   }> {
     try {
       // 文件路径
-      const filePath = `script_dist/${script.id}.json`;
+      const filePath = `public/script_dist/${script.id}.json`;
       
       // 检查文件是否已存在
       const existingFile = await this.checkFileExists(filePath);
@@ -171,7 +171,7 @@ class GitHubService {
   }> {
     try {
       // 文件路径
-      const filePath = `script_dist/${script.id}.json`;
+      const filePath = `public/script_dist/${script.id}.json`;
       
       // 检查文件是否存在并获取内容
       const existingFile = await this.checkFileExists(filePath);
@@ -257,7 +257,7 @@ class GitHubService {
   }> {
     try {
       // 文件路径
-      const filePath = `script_dist/${scriptId}.json`;
+      const filePath = `public/script_dist/${scriptId}.json`;
       
       // 检查文件是否存在并获取内容
       const existingFile = await this.checkFileExists(filePath);
