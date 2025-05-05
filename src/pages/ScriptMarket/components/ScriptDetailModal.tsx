@@ -191,6 +191,7 @@ const ScriptDetailModal: React.FC<ScriptDetailModalProps> = ({
               type="primary" 
               icon={<DownloadOutlined />} 
               onClick={handleDownload}
+              style={{ color: '#fff' }}
             >
               {t('scriptMarket.detail.download') || "下载脚本"}
             </Button>
