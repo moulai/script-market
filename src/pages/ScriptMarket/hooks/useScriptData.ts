@@ -22,7 +22,14 @@ export const useScriptData = () => {
     try {
       setLoading(true);
       // 使用 import.meta.env.BASE_URL 获取正确的基础路径
-      const response = await fetch(`${import.meta.env.BASE_URL}index.json`);
+      // 添加时间戳参数和禁用缓存的请求头，确保每次都获取最新数据
+      const response = await fetch(`${import.meta.env.BASE_URL}index.json?t=${Date.now()}`, {
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      });
       
       if (!response.ok) {
         throw new Error(`获取脚本列表失败: ${response.status} ${response.statusText}`);
@@ -46,7 +53,14 @@ export const useScriptData = () => {
   const fetchScriptDetail = useCallback(async (scriptId: string) => {
     try {
       // 使用 import.meta.env.BASE_URL 获取正确的基础路径
-      const response = await fetch(`${import.meta.env.BASE_URL}script_dist/${scriptId}.json`);
+      // 添加时间戳参数和禁用缓存的请求头，确保每次都获取最新数据
+      const response = await fetch(`${import.meta.env.BASE_URL}script_dist/${scriptId}.json?t=${Date.now()}`, {
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      });
       
       if (!response.ok) {
         throw new Error(`获取脚本详情失败: ${response.status} ${response.statusText}`);

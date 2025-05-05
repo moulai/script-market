@@ -32,7 +32,6 @@ const Header: React.FC<HeaderProps> = ({ onLanguageChange, onRefresh }) => {
       onRefresh();
     } else {
       // 如果没有提供onRefresh函数，则使用默认行为
-      // 在现代浏览器中，不带参数的reload()也会强制从服务器重新加载
       window.location.reload();
     }
   };
