@@ -31,6 +31,7 @@ jobs:
           node generate-index.js
       
       - name: Commit and Push
+        id: commit-push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -38,9 +39,13 @@ jobs:
           # 检查index.json是否有变化
           if git diff --quiet index.json; then
             echo "index.json没有变化，无需提交"
-            exit 0
+            echo "changes_made=false" >> $GITHUB_OUTPUT
+          else
+            git add index.json public/index.json
+            git commit -m "[CI] Auto update index.json"
+            git push
+            echo "changes_made=true" >> $GITHUB_OUTPUT
           fi
           
-          git add index.json public/index.json
-          git commit -m "[CI] Auto update index.json"
-          git push
+          # 确保工作流被标记为完成，以触发workflow_run事件
+          echo "workflow_status=completed" >> $GITHUB_OUTPUT
