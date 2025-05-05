@@ -1,0 +1,46 @@
+name: Generate Scripts Index
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'script_dist/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
+      - name: Generate Index
+        id: generate-index
+        run: |
+          # 直接执行项目中的脚本
+          node generate-index.js
+      
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # 检查index.json是否有变化
+          if git diff --quiet index.json; then
+            echo "index.json没有变化，无需提交"
+            exit 0
+          fi
+          
+          git add index.json
+          git commit -m "自动更新 index.json [skip ci]"
+          git push

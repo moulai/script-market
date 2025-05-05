@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>脚本市场表单预填充示例</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: 10px;
+    }
+    h2 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+    pre {
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      padding: 16px;
+      overflow: auto;
+    }
+    code {
+      font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 85%;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: inherit;
+    }
+    textarea {
+      height: 100px;
+    }
+    button {
+      background-color: #1677ff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #4096ff;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
+    .tab {
+      padding: 10px 15px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-bottom: none;
+      margin-bottom: -1px;
+    }
+    .tab.active {
+      background-color: #fff;
+      border-color: #ddd;
+      border-bottom-color: #fff;
+      border-radius: 4px 4px 0 0;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>脚本市场表单预填充示例</h1>
+  <p>本示例展示了如何使用表单预填充功能，通过外部系统向脚本市场上传页面传递数据。</p>
+  
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('url-tab')">URL参数方式</div>
+    <div class="tab" onclick="switchTab('postmessage-tab')">postMessage API方式</div>
+  </div>
+  
+  <div id="url-tab" class="tab-content active">
+    <h2>URL参数方式</h2>
+    <p>通过URL参数传递JSON数据来预填充表单。支持两种方式：</p>
+    <ul>
+      <li><strong>json参数</strong>：适用于较短的数据</li>
+      <li><strong>data参数</strong>：适用于较长的数据，使用base64编码</li>
+    </ul>
+    
+    <form id="url-form">
+      <div class="form-group">
+        <label for="script-id">脚本ID:</label>
+        <input type="text" id="script-id" name="script-id" value="test-script-001">
+      </div>
+      
+      <div class="form-group">
+        <label for="script-name">脚本名称:</label>
+        <input type="text" id="script-name" name="script-name" value="测试脚本">
+      </div>
+      
+      <div class="form-group">
+        <label for="script-author">作者:</label>
+        <input type="text" id="script-author" name="script-author" value="测试作者">
+      </div>
+      
+      <div class="form-group">
+        <label for="script-content">脚本内容:</label>
+        <textarea id="script-content" name="script-content">console.log('这是一个测试脚本');</textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="base-url">目标URL:</label>
+        <input type="text" id="base-url" name="base-url" value="" placeholder="例如: http://localhost:5173">
+      </div>
+      
+      <div class="form-group">
+        <label for="encoding-type">编码方式:</label>
+        <select id="encoding-type" name="encoding-type">
+          <option value="json">JSON参数 (适用于短数据)</option>
+          <option value="base64">Base64参数 (适用于长数据)</option>
+        </select>
+      </div>
+      
+      <button type="button" onclick="generateUrlAndOpen()">生成URL并打开</button>
+    </form>
+    
+    <div class="result" id="url-result" style="display: none;">
+      <h3>生成的URL:</h3>
+      <pre><code id="generated-url"></code></pre>
+      <button type="button" onclick="copyToClipboard('generated-url')">复制URL</button>
+    </div>
+  </div>
+  
+  <div id="postmessage-tab" class="tab-content">
+    <h2>postMessage API方式</h2>
+    <p>通过浏览器的postMessage API从父窗口向脚本市场页面发送数据。</p>
+    
+    <form id="postmessage-form">
+      <div class="form-group">
+        <label for="pm-script-id">脚本ID:</label>
+        <input type="text" id="pm-script-id" name="pm-script-id" value="test-script-002">
+      </div>
+      
+      <div class="form-group">
+        <label for="pm-script-name">脚本名称:</label>
+        <input type="text" id="pm-script-name" name="pm-script-name" value="PostMessage测试脚本">
+      </div>
+      
+      <div class="form-group">
+        <label for="pm-script-author">作者:</label>
+        <input type="text" id="pm-script-author" name="pm-script-author" value="PostMessage测试作者">
+      </div>
+      
+      <div class="form-group">
+        <label for="pm-script-content">脚本内容:</label>
+        <textarea id="pm-script-content" name="pm-script-content">console.log('这是通过postMessage API发送的测试脚本');</textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="target-url">目标URL:</label>
+        <input type="text" id="target-url" name="target-url" value="" placeholder="例如: http://localhost:5173">
+      </div>
+      
+      <button type="button" onclick="loadIframeAndSendMessage()">加载iframe并发送数据</button>
+    </form>
+    
+    <div id="iframe-container" style="display: none;">
+      <h3>目标iframe:</h3>
+      <iframe id="target-iframe" src=""></iframe>
+    </div>
+  </div>
+
+  <script>
+    // 切换标签页
+    function switchTab(tabId) {
+      // 隐藏所有标签内容
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // 取消所有标签的激活状态
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // 显示选中的标签内容
+      document.getElementById(tabId).classList.add('active');
+      
+      // 激活选中的标签
+      event.currentTarget.classList.add('active');
+    }
+    
+    // 生成URL并打开
+    function generateUrlAndOpen() {
+      const scriptId = document.getElementById('script-id').value;
+      const scriptName = document.getElementById('script-name').value;
+      const scriptAuthor = document.getElementById('script-author').value;
+      const scriptContent = document.getElementById('script-content').value;
+      const encodingType = document.getElementById('encoding-type').value;
+      
+      // 创建数据对象
+      const data = {
+        id: scriptId,
+        name: scriptName,
+        author: scriptAuthor,
+        content: scriptContent
+      };
+      
+      // 获取用户指定的基础URL，如果没有则使用当前页面的基础URL
+      let baseUrl = document.getElementById('base-url').value;
+      if (!baseUrl) {
+        // 获取当前页面的基础URL（去掉文件名）
+        baseUrl = window.location.href.replace(/\/[^\/]*$/, '/');
+      }
+      
+      let targetUrl;
+      
+      if (encodingType === 'json') {
+        // 使用JSON参数
+        targetUrl = `${baseUrl}?json=${encodeURIComponent(JSON.stringify(data))}`;
+      } else {
+        // 使用Base64参数
+        // 解决Unicode字符编码问题
+        const jsonString = JSON.stringify(data);
+        // 将字符串转换为UTF-8编码，然后进行Base64编码
+        let base64Data = btoa(unescape(encodeURIComponent(jsonString)));
+        
+        // 转换为URL安全的Base64（替换+为-，/为_，去掉=）
+        base64Data = base64Data.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        
+        targetUrl = `${baseUrl}?data=${base64Data}`;
+      }
+      
+      // 显示生成的URL
+      document.getElementById('generated-url').textContent = targetUrl;
+      document.getElementById('url-result').style.display = 'block';
+      
+      // 询问是否打开URL
+      if (confirm('URL已生成。是否在新窗口中打开？')) {
+        window.open(targetUrl, '_blank');
+      }
+    }
+    
+    // 加载iframe并发送消息
+    function loadIframeAndSendMessage() {
+      const scriptId = document.getElementById('pm-script-id').value;
+      const scriptName = document.getElementById('pm-script-name').value;
+      const scriptAuthor = document.getElementById('pm-script-author').value;
+      const scriptContent = document.getElementById('pm-script-content').value;
+      const targetUrl = document.getElementById('target-url').value;
+      
+      if (!targetUrl) {
+        alert('请输入目标URL');
+        return;
+      }
+      
+      // 创建数据对象
+      const data = {
+        id: scriptId,
+        name: scriptName,
+        author: scriptAuthor,
+        content: scriptContent
+      };
+      
+      // 设置iframe的src
+      const iframe = document.getElementById('target-iframe');
+      iframe.src = targetUrl;
+      
+      // 显示iframe容器
+      document.getElementById('iframe-container').style.display = 'block';
+      
+      // 等待iframe加载完成后发送消息
+      iframe.onload = function() {
+        try {
+          iframe.contentWindow.postMessage(data, targetUrl);
+          alert('数据已发送到iframe');
+        } catch (error) {
+          alert('发送数据时出错: ' + error.message);
+        }
+      };
+    }
+    
+    // 复制到剪贴板
+    function copyToClipboard(elementId) {
+      const element = document.getElementById(elementId);
+      const text = element.textContent;
+      
+      navigator.clipboard.writeText(text).then(function() {
+        alert('已复制到剪贴板');
+      }, function(err) {
+        alert('复制失败: ' + err);
+      });
+    }
+    
+    // 页面加载时设置默认目标URL
+    window.onload = function() {
+      // 获取当前页面的基础URL（去掉文件名）
+      const baseUrl = window.location.href.replace(/\/[^\/]*$/, '/');
+      document.getElementById('target-url').value = baseUrl;
+      document.getElementById('base-url').value = baseUrl;
+    };
+    
+    // 用于解码Base64编码的UTF-8字符串
+    function decodeBase64ToJson(base64Str) {
+      try {
+        // 将URL安全的Base64转换回标准Base64
+        let base64 = base64Str.replace(/-/g, '+').replace(/_/g, '/');
+        // 添加缺失的填充字符
+        while (base64.length % 4) {
+          base64 += '=';
+        }
+        
+        // 将Base64解码为UTF-8字符串，然后解析为JSON
+        return JSON.parse(decodeURIComponent(escape(atob(base64))));
+      } catch (e) {
+        console.error('解码Base64字符串时出错:', e);
+        return null;
+      }
+    }
+  </script>
+</body>
+</html>
