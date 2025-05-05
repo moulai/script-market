@@ -1,6 +1,6 @@
 import React from 'react';
-import { Typography, Radio, Space } from 'antd';
-import { GlobalOutlined } from '@ant-design/icons';
+import { Typography, Radio, Space, Button, Tooltip } from 'antd';
+import { GlobalOutlined, ReloadOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { HeaderProps } from '../types';
 import './styles.css'; // 引入样式文件
@@ -11,7 +11,7 @@ const { Title } = Typography;
  * 页面头部组件
  * 显示页面标题和语言切换
  */
-const Header: React.FC<HeaderProps> = ({ onLanguageChange }) => {
+const Header: React.FC<HeaderProps> = ({ onLanguageChange, onRefresh }) => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
   
@@ -22,6 +22,18 @@ const Header: React.FC<HeaderProps> = ({ onLanguageChange }) => {
     
     if (onLanguageChange) {
       onLanguageChange(language);
+    }
+  };
+  
+  // 处理刷新按钮点击
+  const handleRefresh = () => {
+    // 清除缓存并重新加载页面
+    if (onRefresh) {
+      onRefresh();
+    } else {
+      // 如果没有提供onRefresh函数，则使用默认行为
+      // 在现代浏览器中，不带参数的reload()也会强制从服务器重新加载
+      window.location.reload();
     }
   };
   
@@ -57,6 +69,14 @@ const Header: React.FC<HeaderProps> = ({ onLanguageChange }) => {
         </Title>
         
         <Space className="language-switcher" style={languageSwitcherStyle}>
+          <Tooltip title={t('scriptMarket.refresh') || "清除缓存并刷新"}>
+            <Button
+              icon={<ReloadOutlined />}
+              size="small"
+              onClick={handleRefresh}
+              style={{ marginRight: '12px' }}
+            />
+          </Tooltip>
           <GlobalOutlined />
           <Radio.Group
             value={currentLanguage}

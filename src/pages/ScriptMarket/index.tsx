@@ -25,7 +25,8 @@ const ScriptMarket: React.FC = () => {
     scripts,
     loading,
     error,
-    lastUpdated
+    lastUpdated,
+    fetchScriptList
   } = useScriptData();
   
   // 脚本筛选逻辑
@@ -52,9 +53,15 @@ const ScriptMarket: React.FC = () => {
     setDetailModalVisible(false);
   };
   
+  // 处理刷新按钮点击
+  const handleRefresh = () => {
+    // 重新获取脚本数据
+    fetchScriptList();
+  };
+
   return (
     <Layout className="script-market-layout">
-      <Header />
+      <Header onRefresh={handleRefresh} />
       <Content className="script-market-content">
         
         {error && (

@@ -105,4 +105,5 @@ export interface FooterProps {
  */
 export interface HeaderProps {
   onLanguageChange?: (language: string) => void;
+  onRefresh?: () => void;
 }
