@@ -1,0 +1,15 @@
+{
+  "id": "test2",
+  "password": "48753aa26e7919c172f15639706c74fe4703e50409c44fefd406540aed1b7fcc",
+  "name": "测试脚本",
+  "author": "testtt",
+  "version": "2025.05.06.0235",
+  "tags": [
+    "JavaScript"
+  ],
+  "content": "test create",
+  "info": "test create",
+  "buttons": [],
+  "createdAt": "2025-05-05T18:36:18.336Z",
+  "updatedAt": "2025-05-05T18:36:18.336Z"
+}
