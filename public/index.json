@@ -1,6 +1,6 @@
 {
-  "total": 2,
-  "lastUpdated": "2025-05-05T16:58:48.568Z",
+  "total": 3,
+  "lastUpdated": "2025-05-05T17:56:07.109Z",
   "scripts": [
     {
       "id": "example-script-2",
@@ -13,6 +13,18 @@
       "updatedAt": "2025-05-07T13:42:00Z",
       "createdAt": "2025-05-06T13:42:00Z",
       "sha": "9d8a7228c672bead1fdd0002bf7847c1ec89f10b440196c9d3ae6bc4b9ad5c89"
+    },
+    {
+      "id": "test",
+      "name": "test",
+      "author": "test",
+      "tags": [
+        "data-processing"
+      ],
+      "version": "2025.05.06.0155",
+      "updatedAt": "2025-05-05T17:55:56.592Z",
+      "createdAt": "2025-05-05T17:46:26.575Z",
+      "sha": "3ac232dd5935219d66df05013b1ec5559d98bd13a622f81c99c5bd62eda7d8dc"
     },
     {
       "id": "example-script",

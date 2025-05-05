@@ -1,6 +1,6 @@
 {
   "total": 3,
-  "lastUpdated": "2025-05-05T17:46:36.908Z",
+  "lastUpdated": "2025-05-05T17:56:07.109Z",
   "scripts": [
     {
       "id": "example-script-2",
@@ -19,13 +19,12 @@
       "name": "test",
       "author": "test",
       "tags": [
-        "data-processing",
-        "javascript"
+        "data-processing"
       ],
-      "version": "2025.05.06.0146",
-      "updatedAt": "2025-05-05T17:46:26.575Z",
+      "version": "2025.05.06.0155",
+      "updatedAt": "2025-05-05T17:55:56.592Z",
       "createdAt": "2025-05-05T17:46:26.575Z",
-      "sha": "6bd35bf80b1cbe634482f42480054c7cfad74a23f34748c2703d4f02adb7a3d7"
+      "sha": "3ac232dd5935219d66df05013b1ec5559d98bd13a622f81c99c5bd62eda7d8dc"
     },
     {
       "id": "example-script",
