@@ -21,7 +21,8 @@ export const useScriptData = () => {
   const fetchScriptList = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch('/index.json');
+      // 使用 import.meta.env.BASE_URL 获取正确的基础路径
+      const response = await fetch(`${import.meta.env.BASE_URL}index.json`);
       
       if (!response.ok) {
         throw new Error(`获取脚本列表失败: ${response.status} ${response.statusText}`);
@@ -44,7 +45,8 @@ export const useScriptData = () => {
    */
   const fetchScriptDetail = useCallback(async (scriptId: string) => {
     try {
-      const response = await fetch(`/script_dist/${scriptId}.json`);
+      // 使用 import.meta.env.BASE_URL 获取正确的基础路径
+      const response = await fetch(`${import.meta.env.BASE_URL}script_dist/${scriptId}.json`);
       
       if (!response.ok) {
         throw new Error(`获取脚本详情失败: ${response.status} ${response.statusText}`);

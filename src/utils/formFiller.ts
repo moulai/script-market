@@ -69,7 +69,19 @@ export const listenForFormData = (form: FormInstance) => {
 export const checkForUrlData = (form: FormInstance) => {
   try {
     // 获取URL中的参数
-    const urlParams = new URLSearchParams(window.location.search);
+    // 支持 HashRouter 模式，从 hash 后面获取查询参数
+    // 例如从 http://localhost:4173/script-market/#/upload?json=%7 中获取 ?json=%7
+    let search = window.location.search;
+    
+    // 如果使用了 HashRouter，查询参数会在 hash 后面
+    if (window.location.hash) {
+      const hashParts = window.location.hash.split('?');
+      if (hashParts.length > 1) {
+        search = '?' + hashParts[1];
+      }
+    }
+    
+    const urlParams = new URLSearchParams(search);
     
     // 尝试从'json'参数获取数据
     const jsonParam = urlParams.get('json');
@@ -79,7 +91,9 @@ export const checkForUrlData = (form: FormInstance) => {
       fillFormWithData(form, data);
       
       // 清除URL参数以避免刷新时重复填充
-      window.history.replaceState({}, document.title, window.location.pathname);
+      // 保留哈希路径部分，只清除查询参数
+      const hashPath = window.location.hash.split('?')[0];
+      window.history.replaceState({}, document.title, window.location.pathname + hashPath);
       return;
     }
     
@@ -102,7 +116,9 @@ export const checkForUrlData = (form: FormInstance) => {
         fillFormWithData(form, data);
         
         // 清除URL参数以避免刷新时重复填充
-        window.history.replaceState({}, document.title, window.location.pathname);
+        // 保留哈希路径部分，只清除查询参数
+        const hashPath = window.location.hash.split('?')[0];
+        window.history.replaceState({}, document.title, window.location.pathname + hashPath);
       } catch (error) {
         console.error('解析base64编码数据时出错:', error);
       }
@@ -154,7 +170,15 @@ export const initFormDataReceiver = (form: FormInstance) => {
  * @returns 包含数据的完整URL
  */
 export const generateTestUrl = (data: Partial<IScript>, useBase64: boolean = false): string => {
-  const baseUrl = window.location.origin + window.location.pathname;
+  // 获取基础URL，考虑 HashRouter 模式
+  // 如果是 HashRouter 模式，需要包含 hash 路径部分（例如 #/upload）
+  let baseUrl = window.location.origin + window.location.pathname;
+  
+  // 如果存在哈希路径，保留路径部分
+  if (window.location.hash) {
+    const hashPath = window.location.hash.split('?')[0];
+    baseUrl += hashPath;
+  }
   
   if (useBase64) {
     // 使用base64编码（适用于较长的数据）

@@ -34,7 +34,7 @@ const ScriptDetailModal: React.FC<ScriptDetailModalProps> = ({
         setLoading(true);
         setError(null);
         
-        const response = await fetch(`/script_dist/${scriptId}.json`);
+        const response = await fetch(`${import.meta.env.BASE_URL}script_dist/${scriptId}.json`);
         
         if (!response.ok) {
           throw new Error(`获取脚本详情失败: ${response.status} ${response.statusText}`);

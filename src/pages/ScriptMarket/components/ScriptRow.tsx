@@ -21,7 +21,7 @@ const ScriptRow = ({ script, onSelect, t }: ScriptRowProps & { t: (key: string) 
     e.stopPropagation(); // 阻止事件冒泡，避免触发行点击事件
     
     // 构造下载URL
-    const downloadUrl = `/script_dist/${script.id}.json`;
+    const downloadUrl = `${import.meta.env.BASE_URL}script_dist/${script.id}.json`;
     
     // 创建一个a标签并模拟点击
     const link = document.createElement('a');
