@@ -3,7 +3,6 @@ import { Button, Tag, Space, Tooltip } from 'antd';
 import { EyeOutlined, DownloadOutlined } from '@ant-design/icons';
 import { ScriptRowProps, ScriptRowData } from '../types';
 import { formatDate } from '../utils/filterUtils';
-import { downloadScript } from '../utils/downloadUtils';
 
 /**
  * 脚本表格行组件

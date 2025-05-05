@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Typography, Alert } from 'antd';
+import { Layout, Alert } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import Header from './components/Header';
@@ -12,7 +12,6 @@ import { useScriptFilter } from './hooks/useScriptFilter';
 import './components/styles.css';
 
 const { Content } = Layout;
-const { Title } = Typography;
 
 /**
  * 脚本市场主页面

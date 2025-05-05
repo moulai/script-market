@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Table, Empty, Tooltip } from 'antd';
+import { Table, Empty } from 'antd';
 import { SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { TableViewProps, ScriptRowData } from '../types';
+import { TableViewProps } from '../types';
 import ScriptRow from './ScriptRow';
 import type { SortOrder } from 'antd/es/table/interface';
 
@@ -18,7 +18,7 @@ const TableView: React.FC<TableViewProps> = ({ scripts, onScriptSelect }) => {
   });
   
   // 处理表格排序变化
-  const handleChange = (pagination: any, filters: any, sorter: any) => {
+  const handleChange = (sorter: any) => {
     setSortedInfo(sorter);
   };
   

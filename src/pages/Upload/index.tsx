@@ -8,7 +8,6 @@ import {
   Select,
   Modal,
   Typography,
-  Space,
   Divider,
   message,
   Spin,
@@ -24,22 +23,18 @@ import {
   DeleteOutlined,
   PlusOutlined,
   UploadOutlined,
-  GlobalOutlined,
-  MenuOutlined,
-  QuestionCircleOutlined,
   ExclamationCircleOutlined,
   KeyOutlined
 } from '@ant-design/icons';
 
-import { IScript, IButton } from '../../types/script';
-import { isValidId, isNotEmpty, generateVersionFromTimestamp, isValidFileName } from '../../utils/validation';
+import { IScript } from '../../types/script';
+import { isValidId, generateVersionFromTimestamp, isValidFileName } from '../../utils/validation';
 import { encryptPassword } from '../../utils/crypto';
 import { initFormDataReceiver } from '../../utils/formFiller';
 import tagsList from '../../config/tagsList';
 import githubService from '../../services/github';
 
-const { Title, Text, Paragraph } = Typography;
-const { TextArea } = Input;
+const { Paragraph } = Typography;
 const { Option, OptGroup } = Select;
 
 const UploadPage: React.FC = () => {
@@ -55,7 +50,7 @@ const UploadPage: React.FC = () => {
   
   // 文件已存在相关状态
   const [fileExistsVisible, setFileExistsVisible] = useState(false);
-  const [existingData, setExistingData] = useState<IScript | null>(null);
+  const [_existingData, setExistingData] = useState<IScript | null>(null);
   const [passwordVerification, setPasswordVerification] = useState('');
   const [passwordIncorrect, setPasswordIncorrect] = useState(false);
   const [actionLoading, setActionLoading] = useState<'update' | 'delete' | null>(null);
@@ -393,7 +388,7 @@ const UploadPage: React.FC = () => {
                   </div>
                 )}
                 
-                {fields.map((field, index) => (
+                {fields.map((field) => (
                   <Row key={field.key} gutter={8} align="middle" style={{ marginBottom: '8px' }}>
                     <Col flex="auto">
                       <Form.Item

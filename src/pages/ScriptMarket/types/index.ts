@@ -1,7 +1,6 @@
 /**
  * 脚本目录页面类型定义
  */
-import { IScript } from '../../../types/script';
 
 /**
  * 脚本信息类型

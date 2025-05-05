@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Result, Button, Typography, Space, Card, message } from 'antd';
+import { Result, Button, Typography, Card, message } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { 
   CheckCircleOutlined, 

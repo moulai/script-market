@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Select, Row, Col, Divider } from 'antd';
+import { Input, Select, Row, Col } from 'antd';
 import {
   SearchOutlined,
   UserOutlined
