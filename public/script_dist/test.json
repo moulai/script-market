@@ -3,13 +3,18 @@
   "password": "48753aa26e7919c172f15639706c74fe4703e50409c44fefd406540aed1b7fcc",
   "name": "test",
   "author": "test",
-  "version": "2025.05.06.0224",
+  "version": "2025.05.06.0232",
   "tags": [
-    "实用工具"
+    "UI增强"
   ],
-  "content": "test update 5",
-  "info": "test 5",
-  "buttons": [],
+  "content": "test update 6",
+  "info": "test update 66",
+  "buttons": [
+    {
+      "name": "test",
+      "visible": true
+    }
+  ],
   "createdAt": "2025-05-05T17:46:26.575Z",
-  "updatedAt": "2025-05-05T18:24:56.449Z"
+  "updatedAt": "2025-05-05T18:32:59.939Z"
 }
