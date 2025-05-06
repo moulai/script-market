@@ -11,7 +11,7 @@ import { formatDate } from '../utils/filterUtils';
  */
 const ScriptRow = ({ script, onSelect, t }: ScriptRowProps & { t: (key: string) => string }): ScriptRowData => {
   
-  // 处理查看详情
+  // 处理详情
   const handleViewDetails = () => {
     onSelect(script.id);
   };
@@ -86,7 +86,7 @@ const ScriptRow = ({ script, onSelect, t }: ScriptRowProps & { t: (key: string) 
           onClick={handleViewDetails}
           style={{ color: '#fff' }}
         >
-          {t('scriptMarket.table.viewDetails') || "查看详情"}
+          {t('scriptMarket.table.viewDetails') || "详情"}
         </Button>
         <Button
           type="default"

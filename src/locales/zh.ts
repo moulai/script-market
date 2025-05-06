@@ -172,7 +172,7 @@ const zh = {
     
     // 卡片视图
     card: {
-      viewDetails: '查看详情',
+      viewDetails: '详情',
       updated: '更新于',
       version: '版本'
     },
@@ -185,7 +185,7 @@ const zh = {
       version: '版本',
       updatedAt: '更新时间',
       action: '操作',
-      viewDetails: '查看详情',
+      viewDetails: '详情',
       download: '下载脚本'
     },
     

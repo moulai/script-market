@@ -49,7 +49,8 @@ const TableView: React.FC<TableViewProps> = ({ scripts, onScriptSelect }) => {
       sortDirections: ['ascend', 'descend', 'ascend'] as SortOrder[],
       showSorterTooltip: false,
       sortIcon: customSorterIcon,
-      width: '20%',
+      // width: 140,
+      minWidth: 140,
     },
     {
       title: t('scriptMarket.table.author') || '作者',
@@ -60,19 +61,22 @@ const TableView: React.FC<TableViewProps> = ({ scripts, onScriptSelect }) => {
       sortDirections: ['ascend', 'descend', 'ascend'] as SortOrder[],
       showSorterTooltip: false,
       sortIcon: customSorterIcon,
-      width: '15%',
+      // width: 100,
+      minWidth: 100,
     },
     {
       title: t('scriptMarket.table.tags') || '标签',
       dataIndex: 'tags',
       key: 'tags',
-      width: '20%',
+      // width: 100,
+      minWidth: 100,
     },
     {
       title: t('scriptMarket.table.version') || '版本',
       dataIndex: 'version',
       key: 'version',
-      width: '10%',
+      width: 100,
+      minWidth: 100,
     },
     {
       title: t('scriptMarket.table.updatedAt') || '更新时间',
@@ -88,14 +92,16 @@ const TableView: React.FC<TableViewProps> = ({ scripts, onScriptSelect }) => {
       sortDirections: ['ascend', 'descend', 'ascend'] as SortOrder[],
       showSorterTooltip: false,
       sortIcon: customSorterIcon,
-      width: '15%',
+      width: 120,
+      minWidth: 120,
       defaultSortOrder: 'descend' as 'descend',
     },
     {
       title: t('scriptMarket.table.action') || '操作',
       dataIndex: 'action',
       key: 'action',
-      width: '15%',
+      width: 100,
+      minWidth: 100,
     },
   ];
   
@@ -113,13 +119,14 @@ const TableView: React.FC<TableViewProps> = ({ scripts, onScriptSelect }) => {
   };
   
   return (
-    <div className="table-view">
+    <div className="table-view" style={{ overflow: 'auto' }}>
       <Table
         columns={columns}
         dataSource={dataSource}
         rowKey="key"
         locale={locale}
         onChange={handleChange}
+        scroll={{ x: 600 }}
         pagination={{
           pageSize: 10,
           showSizeChanger: true,
