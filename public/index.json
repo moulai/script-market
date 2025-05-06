@@ -1,6 +1,6 @@
 {
   "total": 5,
-  "lastUpdated": "2025-05-06T00:07:07.421Z",
+  "lastUpdated": "2025-05-06T00:11:05.689Z",
   "scripts": [
     {
       "id": "example-script-2",
@@ -15,6 +15,18 @@
       "sha": "9d8a7228c672bead1fdd0002bf7847c1ec89f10b440196c9d3ae6bc4b9ad5c89"
     },
     {
+      "id": "test2",
+      "name": "test2",
+      "author": "test",
+      "tags": [
+        "数据处理"
+      ],
+      "version": "2025.05.06.0809",
+      "updatedAt": "2025-05-06T00:10:54.945Z",
+      "createdAt": "2025-05-05T18:36:18.336Z",
+      "sha": "146ba7530363e324795a5dd6873e41a226e8b034ae8e445b7aac5dc419011c98"
+    },
+    {
       "id": "regex-script-group-filter-view",
       "name": "正则&脚本自动分组+筛选查看",
       "author": "Lai",
@@ -25,18 +37,6 @@
       "updatedAt": "2025-05-06T00:06:56.054Z",
       "createdAt": "2025-05-06T00:06:56.054Z",
       "sha": "de95dbcc50c6511ffb595703fd901d9b725048238a1619af82cd40de0b6ffa54"
-    },
-    {
-      "id": "test2",
-      "name": "测试脚本",
-      "author": "testtt",
-      "tags": [
-        "JavaScript"
-      ],
-      "version": "2025.05.06.0235",
-      "updatedAt": "2025-05-05T18:36:18.336Z",
-      "createdAt": "2025-05-05T18:36:18.336Z",
-      "sha": "90c9852bad8727895d76844c2aa16fb5170c0a3042162489cf16cb44a6cb02d4"
     },
     {
       "id": "test",
