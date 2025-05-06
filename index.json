@@ -1,6 +1,6 @@
 {
-  "total": 4,
-  "lastUpdated": "2025-05-05T18:36:29.211Z",
+  "total": 5,
+  "lastUpdated": "2025-05-06T00:07:07.421Z",
   "scripts": [
     {
       "id": "example-script-2",
@@ -13,6 +13,18 @@
       "updatedAt": "2025-05-07T13:42:00Z",
       "createdAt": "2025-05-06T13:42:00Z",
       "sha": "9d8a7228c672bead1fdd0002bf7847c1ec89f10b440196c9d3ae6bc4b9ad5c89"
+    },
+    {
+      "id": "regex-script-group-filter-view",
+      "name": "正则&脚本自动分组+筛选查看",
+      "author": "Lai",
+      "tags": [
+        "UI增强"
+      ],
+      "version": "2025.05.06.0755",
+      "updatedAt": "2025-05-06T00:06:56.054Z",
+      "createdAt": "2025-05-06T00:06:56.054Z",
+      "sha": "de95dbcc50c6511ffb595703fd901d9b725048238a1619af82cd40de0b6ffa54"
     },
     {
       "id": "test2",
