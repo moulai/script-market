@@ -1,15 +1,15 @@
 {
   "id": "test2",
   "password": "48753aa26e7919c172f15639706c74fe4703e50409c44fefd406540aed1b7fcc",
-  "name": "测试脚本",
-  "author": "testtt",
-  "version": "2025.05.06.0235",
+  "name": "test2",
+  "author": "test",
+  "version": "2025.05.06.0809",
   "tags": [
-    "JavaScript"
+    "数据处理"
   ],
-  "content": "test create",
-  "info": "test create",
+  "content": "/**\n * 脚本信息接口\n * 定义上传脚本需要的所有字段\n */\nexport interface IScript {\n  /**\n   * 脚本ID，用作文件名称\n   * 必须符合文件命名规范\n   */\n  id: string;\n  \n  /**\n   * 更新与删除密码\n   * 用于后续脚本更新和删除操作的认证\n   */\n  password: string;\n  \n  /**\n   * 脚本名称\n   */\n  name: string;\n  \n  /**\n   * 作者名称\n   */\n  author: string;\n  \n  /**\n   * 版本号\n   * 默认根据时间戳自动生成\n   */\n  version: string;\n  \n  /**\n   * 标签列表\n   * 从预设列表中多选\n   */\n  tags: string[];\n  \n  /**\n   * 脚本内容\n   * 通常是JS或TS代码\n   */\n  content: string;\n  \n  /**\n   * 作者备注信息\n   */\n  info: string;\n  \n  /**\n   * 按钮触发配置\n   */\n  buttons: IButton[];\n\n  /**\n   * 创建时间\n   */\n  createdAt: string;\n  \n  /**\n   * 更新时间\n   */\n  updatedAt: string;\n  \n  /**\n   * 原始密码（仅前端使用，不存储）\n   * 用于在界面显示原始密码，而不是加密后的密码\n   */\n  originalPassword?: string;\n}\n\n/**\n * 按钮接口\n * 定义按钮触发的配置\n */\nexport interface IButton {\n  /**\n   * 按钮名称\n   */\n  name: string;\n  \n  /**\n   * 按钮是否可见\n   */\n  visible: boolean;\n}\n\n/**\n * 脚本表单验证状态\n */\nexport interface IScriptValidation {\n  id: boolean;\n  password: boolean;\n  name: boolean;\n  author: boolean;\n  content: boolean;\n} ",
+  "info": "/**\n * 脚本信息接口\n * 定义上传脚本需要的所有字段\n */\nexport interface IScript {\n  /**\n   * 脚本ID，用作文件名称\n   * 必须符合文件命名规范\n   */\n  id: string;\n  \n  /**\n   * 更新与删除密码\n   * 用于后续脚本更新和删除操作的认证\n   */\n  password: string;\n  \n  /**\n   * 脚本名称\n   */\n  name: string;\n  \n  /**\n   * 作者名称\n   */\n  author: string;\n  \n  /**\n   * 版本号\n   * 默认根据时间戳自动生成\n   */\n  version: string;\n  \n  /**\n   * 标签列表\n   * 从预设列表中多选\n   */\n  tags: string[];\n  \n  /**\n   * 脚本内容\n   * 通常是JS或TS代码\n   */\n  content: string;\n  \n  /**\n   * 作者备注信息\n   */\n  info: string;\n  \n  /**\n   * 按钮触发配置\n   */\n  buttons: IButton[];\n\n  /**\n   * 创建时间\n   */\n  createdAt: string;\n  \n  /**\n   * 更新时间\n   */\n  updatedAt: string;\n  \n  /**\n   * 原始密码（仅前端使用，不存储）\n   * 用于在界面显示原始密码，而不是加密后的密码\n   */\n  originalPassword?: string;\n}\n\n/**\n * 按钮接口\n * 定义按钮触发的配置\n */\nexport interface IButton {\n  /**\n   * 按钮名称\n   */\n  name: string;\n  \n  /**\n   * 按钮是否可见\n   */\n  visible: boolean;\n}\n\n/**\n * 脚本表单验证状态\n */\nexport interface IScriptValidation {\n  id: boolean;\n  password: boolean;\n  name: boolean;\n  author: boolean;\n  content: boolean;\n} ",
   "buttons": [],
   "createdAt": "2025-05-05T18:36:18.336Z",
-  "updatedAt": "2025-05-05T18:36:18.336Z"
+  "updatedAt": "2025-05-06T00:10:54.945Z"
 }
