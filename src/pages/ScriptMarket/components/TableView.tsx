@@ -32,10 +32,10 @@ const TableView: React.FC<TableViewProps> = ({ scripts, onScriptSelect }) => {
   
   // 处理表格排序变化
   const handleChange = (
-    pagination: TablePaginationConfig,
-    filters: Record<string, FilterValue | null>,
+    _pagination: TablePaginationConfig,
+    _filters: Record<string, FilterValue | null>,
     sorter: SorterResult<ScriptRowData> | SorterResult<ScriptRowData>[],
-    extra: any
+    _extra: any
   ) => {
     // 确保sorter是单个对象而不是数组
     const sorterInfo = Array.isArray(sorter) ? sorter[0] : sorter;

@@ -9,7 +9,7 @@ import { downloadScript, copyToClipboard } from '../utils/downloadUtils';
 import { formatDate } from '../utils/filterUtils';
 import { getTagColor } from '../../../utils/tagUtils';
 
-const { Title, Text, Paragraph } = Typography;
+const { Title, Text } = Typography;
 
 /**
  * 脚本详情模态框组件
