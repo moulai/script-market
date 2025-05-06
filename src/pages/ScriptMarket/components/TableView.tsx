@@ -4,7 +4,8 @@ import { SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons
 import { useTranslation } from 'react-i18next';
 import { TableViewProps } from '../types';
 import ScriptRow from './ScriptRow';
-import type { SortOrder } from 'antd/es/table/interface';
+import type { SortOrder, TablePaginationConfig, SorterResult } from 'antd/es/table/interface';
+import type { FilterValue } from 'antd/es/table/interface';
 
 /**
  * 表格视图组件
@@ -12,14 +13,33 @@ import type { SortOrder } from 'antd/es/table/interface';
  */
 const TableView: React.FC<TableViewProps> = ({ scripts, onScriptSelect }) => {
   const { t } = useTranslation();
-  const [sortedInfo, setSortedInfo] = useState<any>({
+  
+  // 定义数据类型
+  interface ScriptRowData {
+    key: string;
+    name: any;
+    author: string;
+    tags: any;
+    version: string;
+    updatedAt: any;
+    action: any;
+  }
+  
+  const [sortedInfo, setSortedInfo] = useState<SorterResult<ScriptRowData>>({
     columnKey: 'updatedAt',
     order: 'descend'
   });
   
   // 处理表格排序变化
-  const handleChange = (sorter: any) => {
-    setSortedInfo(sorter);
+  const handleChange = (
+    pagination: TablePaginationConfig,
+    filters: Record<string, FilterValue | null>,
+    sorter: SorterResult<ScriptRowData> | SorterResult<ScriptRowData>[],
+    extra: any
+  ) => {
+    // 确保sorter是单个对象而不是数组
+    const sorterInfo = Array.isArray(sorter) ? sorter[0] : sorter;
+    setSortedInfo(sorterInfo);
   };
   
   // 自定义排序图标
@@ -45,7 +65,7 @@ const TableView: React.FC<TableViewProps> = ({ scripts, onScriptSelect }) => {
         const bName = b.name.props.children;
         return aName.localeCompare(bName);
       },
-      sortOrder: sortedInfo.columnKey === 'name' && sortedInfo.order,
+      sortOrder: sortedInfo.columnKey === 'name' ? sortedInfo.order : null,
       sortDirections: ['ascend', 'descend', 'ascend'] as SortOrder[],
       showSorterTooltip: false,
       sortIcon: customSorterIcon,
@@ -57,7 +77,7 @@ const TableView: React.FC<TableViewProps> = ({ scripts, onScriptSelect }) => {
       dataIndex: 'author',
       key: 'author',
       sorter: (a: any, b: any) => a.author.localeCompare(b.author),
-      sortOrder: sortedInfo.columnKey === 'author' && sortedInfo.order,
+      sortOrder: sortedInfo.columnKey === 'author' ? sortedInfo.order : null,
       sortDirections: ['ascend', 'descend', 'ascend'] as SortOrder[],
       showSorterTooltip: false,
       sortIcon: customSorterIcon,
@@ -88,7 +108,7 @@ const TableView: React.FC<TableViewProps> = ({ scripts, onScriptSelect }) => {
         const bDate = b.updatedAt.props.title;
         return new Date(aDate).getTime() - new Date(bDate).getTime();
       },
-      sortOrder: sortedInfo.columnKey === 'updatedAt' && sortedInfo.order,
+      sortOrder: sortedInfo.columnKey === 'updatedAt' ? sortedInfo.order : null,
       sortDirections: ['ascend', 'descend', 'ascend'] as SortOrder[],
       showSorterTooltip: false,
       sortIcon: customSorterIcon,

@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({ onLanguageChange, onRefresh }) => {
     justifyContent: 'space-between',
     alignItems: 'center',
     maxWidth: '1200px',
-    margin: '0 auto',
+    margin: '0 24px',
     padding: '0 16px'
   };
   
