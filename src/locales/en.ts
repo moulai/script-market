@@ -8,6 +8,7 @@ const en = {
     cancel: 'Cancel',
     confirm: 'Confirm',
     upload: 'Upload',
+    import: 'Import',
     reset: 'Reset',
     back: 'Back',
     loading: 'Loading...',
@@ -231,6 +232,14 @@ const en = {
     
     // Refresh button
     refresh: 'Refresh'
+  },
+  
+  // Import functionality
+  import: {
+    button: 'Import',
+    success: 'Import successful',
+    error: 'Import failed, please check file format',
+    invalidFileType: 'Please upload a valid JSON file'
   }
 };
 

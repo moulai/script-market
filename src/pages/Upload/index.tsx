@@ -34,6 +34,7 @@ import { encryptPassword } from '../../utils/crypto';
 import { initFormDataReceiver } from '../../utils/formFiller';
 import tagsList from '../../config/tagsList';
 import githubService from '../../services/github';
+import ImportButton from './components/ImportButton';
 
 const { Paragraph } = Typography;
 const { Option, OptGroup } = Select;
@@ -465,15 +466,22 @@ const UploadPage: React.FC = () => {
           </Form.Item>
           
           <Form.Item>
-            <Button 
-              type="primary" 
-              htmlType="submit"
-              icon={<UploadOutlined />}
-              size="large"
-              style={{ width: '100%', color: '#fff' }}
-            >
-              {t('common.upload')}
-            </Button>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <div style={{ width: '30%' }}>
+                <ImportButton form={form} />
+              </div>
+              <div style={{ width: '70%' }}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  icon={<UploadOutlined />}
+                  size="large"
+                  style={{ width: '100%', color: '#fff' }}
+                >
+                  {t('common.upload')}
+                </Button>
+              </div>
+            </div>
           </Form.Item>
         </Form>
       </Card>

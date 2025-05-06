@@ -8,6 +8,7 @@ const zh = {
     cancel: '取消',
     confirm: '确认',
     upload: '上传',
+    import: '导入',
     reset: '重置',
     back: '返回',
     loading: '加载中...',
@@ -232,6 +233,14 @@ const zh = {
     
     // 刷新按钮
     refresh: '刷新'
+  },
+  
+  // 导入功能
+  import: {
+    button: '导入',
+    success: '导入成功',
+    error: '导入失败，请检查文件格式',
+    invalidFileType: '请上传有效的JSON文件'
   }
 };
 
