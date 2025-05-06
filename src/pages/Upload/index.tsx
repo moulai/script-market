@@ -18,6 +18,7 @@ import {
   Badge
 } from 'antd';
 import { useTranslation } from 'react-i18next';
+import ReactMarkdown from 'react-markdown';
 import {
   EditOutlined,
   DeleteOutlined,
@@ -573,7 +574,9 @@ const UploadPage: React.FC = () => {
             {scriptData?.info && (
               <div className="confirm-item">
                 <div className="confirm-label">{t('form.info.label')}:</div>
-                <div className="confirm-value">{scriptData.info}</div>
+                <div className="confirm-info">
+                  <ReactMarkdown>{scriptData.info}</ReactMarkdown>
+                </div>
               </div>
             )}
             

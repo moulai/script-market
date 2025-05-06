@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Typography, Tag, Button, Space, Divider, message, Spin, Descriptions } from 'antd';
-import { DownloadOutlined, CopyOutlined, CloseOutlined } from '@ant-design/icons';
+import { DownloadOutlined, CopyOutlined, CloseOutlined, IdcardOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import ReactMarkdown from 'react-markdown';
 import { ScriptDetailModalProps } from '../types';
 import { IScript } from '../../../types/script';
 import { downloadScript, copyToClipboard } from '../utils/downloadUtils';
@@ -109,7 +110,13 @@ const ScriptDetailModal: React.FC<ScriptDetailModalProps> = ({
     return (
       <>
         <div className="script-detail-header">
-          <Title level={3}>{scriptDetail.name}</Title>
+          <div style={{ marginBottom: 0 }}>
+            <Tag color="default" style={{ fontSize: '12px' }}>
+              <IdcardOutlined style={{ marginRight: 4 }} />
+              {scriptDetail.id}
+            </Tag>
+          </div>
+          <Title level={3} style={{ marginTop: 12}}>{scriptDetail.name}</Title>
           
           <Descriptions column={2} size="small">
             <Descriptions.Item label={t('scriptMarket.detail.author') || "作者"}>
@@ -137,9 +144,9 @@ const ScriptDetailModal: React.FC<ScriptDetailModalProps> = ({
           </div>
           
           {scriptDetail.info && (
-            <Paragraph style={{ marginTop: 16 }}>
-              {scriptDetail.info}
-            </Paragraph>
+            <div style={{ marginTop: 16 }}>
+              <ReactMarkdown>{scriptDetail.info}</ReactMarkdown>
+            </div>
           )}
         </div>
         
