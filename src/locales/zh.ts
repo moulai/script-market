@@ -2,6 +2,11 @@
  * 中文翻译
  */
 const zh = {
+  // i18n配置
+  i18n: {
+    locale: 'zh-CN'
+  },
+  
   // 通用
   common: {
     submit: '提交',
@@ -232,7 +237,17 @@ const zh = {
     empty: '没有找到匹配的脚本',
     
     // 刷新按钮
-    refresh: '刷新'
+    refresh: '刷新',
+    
+    // 相对时间
+    time: {
+      justNow: '刚刚',
+      minutesAgo: '{count}分钟前',
+      hoursAgo: '{count}小时前',
+      daysAgo: '{count}天前',
+      monthsAgo: '{count}个月前',
+      yearsAgo: '{count}年前'
+    }
   },
   
   // 导入功能

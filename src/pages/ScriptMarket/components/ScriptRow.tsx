@@ -74,7 +74,7 @@ const ScriptRow = ({ script, onSelect, t }: ScriptRowProps & { t: (key: string) 
     tags: renderTags(),
     version: script.version,
     updatedAt: (
-      <Tooltip title={new Date(script.updatedAt).toLocaleString('zh-CN')}>
+      <Tooltip title={new Date(script.updatedAt).toLocaleString(t('i18n.locale') || 'zh-CN')}>
         {formatDate(script.updatedAt, 'relative')}
       </Tooltip>
     ),

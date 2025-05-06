@@ -2,6 +2,7 @@
  * 筛选相关工具函数
  */
 import { ScriptInfo } from '../types';
+import i18next from 'i18next';
 
 /**
  * 格式化日期
@@ -13,8 +14,12 @@ export const formatDate = (dateString: string, format: 'full' | 'date' | 'relati
     const date = new Date(dateString);
     
     if (isNaN(date.getTime())) {
-      return '无效日期';
+      return i18next.t('common.error');
     }
+    
+    // 获取当前语言
+    const currentLanguage = i18next.language;
+    const locale = currentLanguage === 'en' ? 'en-US' : 'zh-CN';
     
     if (format === 'relative') {
       // 相对时间（例如：3天前）
@@ -28,27 +33,27 @@ export const formatDate = (dateString: string, format: 'full' | 'date' | 'relati
       const diffYear = Math.floor(diffMonth / 12);
       
       if (diffYear > 0) {
-        return `${diffYear}年前`;
+        return i18next.t('scriptMarket.time.yearsAgo').replace('{count}', diffYear.toString());
       } else if (diffMonth > 0) {
-        return `${diffMonth}个月前`;
+        return i18next.t('scriptMarket.time.monthsAgo').replace('{count}', diffMonth.toString());
       } else if (diffDay > 0) {
-        return `${diffDay}天前`;
+        return i18next.t('scriptMarket.time.daysAgo').replace('{count}', diffDay.toString());
       } else if (diffHour > 0) {
-        return `${diffHour}小时前`;
+        return i18next.t('scriptMarket.time.hoursAgo').replace('{count}', diffHour.toString());
       } else if (diffMin > 0) {
-        return `${diffMin}分钟前`;
+        return i18next.t('scriptMarket.time.minutesAgo').replace('{count}', diffMin.toString());
       } else {
-        return '刚刚';
+        return i18next.t('scriptMarket.time.justNow');
       }
     } else if (format === 'date') {
       // 仅日期（例如：2025-05-05）
-      return date.toLocaleDateString('zh-CN');
+      return date.toLocaleDateString(locale);
     } else {
       // 完整日期时间（例如：2025-05-05 13:45:37）
-      return date.toLocaleString('zh-CN');
+      return date.toLocaleString(locale);
     }
   } catch (error) {
-    console.error('日期格式化错误:', error);
+    console.error('Date formatting error:', error);
     return dateString;
   }
 };

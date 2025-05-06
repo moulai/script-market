@@ -2,6 +2,11 @@
  * English translation
  */
 const en = {
+  // i18n configuration
+  i18n: {
+    locale: 'en-US'
+  },
+  
   // Common
   common: {
     submit: 'Submit',
@@ -231,7 +236,17 @@ const en = {
     empty: 'No matching scripts found',
     
     // Refresh button
-    refresh: 'Refresh'
+    refresh: 'Refresh',
+    
+    // Relative time
+    time: {
+      justNow: 'Just now',
+      minutesAgo: '{count} minutes ago',
+      hoursAgo: '{count} hours ago',
+      daysAgo: '{count} days ago',
+      monthsAgo: '{count} months ago',
+      yearsAgo: '{count} years ago'
+    }
   },
   
   // Import functionality
