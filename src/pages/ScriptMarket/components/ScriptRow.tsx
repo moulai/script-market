@@ -3,6 +3,7 @@ import { Button, Tag, Space, Tooltip } from 'antd';
 import { EyeOutlined, DownloadOutlined } from '@ant-design/icons';
 import { ScriptRowProps, ScriptRowData } from '../types';
 import { formatDate } from '../utils/filterUtils';
+import { getTagColor } from '../../../utils/tagUtils';
 
 /**
  * 脚本表格行组件
@@ -41,16 +42,16 @@ const ScriptRow = ({ script, onSelect, t }: ScriptRowProps & { t: (key: string) 
     return (
       <Space size={[0, 4]} wrap>
         {displayTags.map(tag => (
-          <Tag key={tag} color="blue">
+          <Tag key={tag} color={getTagColor(tag)}>
             {tag}
           </Tag>
         ))}
         {hasMore && (
-          <Tooltip 
+          <Tooltip
             title={
               <div>
                 {script.tags.slice(3).map(tag => (
-                  <Tag key={tag} color="blue" style={{ margin: '2px' }}>
+                  <Tag key={tag} color={getTagColor(tag)} style={{ margin: '2px' }}>
                     {tag}
                   </Tag>
                 ))}

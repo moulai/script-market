@@ -7,6 +7,7 @@ import { ScriptDetailModalProps } from '../types';
 import { IScript } from '../../../types/script';
 import { downloadScript, copyToClipboard } from '../utils/downloadUtils';
 import { formatDate } from '../utils/filterUtils';
+import { getTagColor } from '../../../utils/tagUtils';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -136,7 +137,7 @@ const ScriptDetailModal: React.FC<ScriptDetailModalProps> = ({
           <div style={{ marginTop: 16 }}>
             <Space size={[0, 8]} wrap>
               {scriptDetail.tags.map(tag => (
-                <Tag key={tag} color="blue">
+                <Tag key={tag} color={getTagColor(tag)}>
                   {tag}
                 </Tag>
               ))}
