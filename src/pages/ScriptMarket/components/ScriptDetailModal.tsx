@@ -130,7 +130,7 @@ const ScriptDetailModal: React.FC<ScriptDetailModalProps> = ({
           </div>
           <Title level={3} style={{ marginTop: 12}}>{scriptDetail.name}</Title>
           
-          <Descriptions column={2} size="small">
+          <Descriptions column={{ xs: 1, sm: 1, md: 2, lg: 2, xl: 2 }} size="small">
             <Descriptions.Item label={t('scriptMarket.detail.author') || "作者"}>
               {scriptDetail.author}
             </Descriptions.Item>
