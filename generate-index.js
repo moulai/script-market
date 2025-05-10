@@ -23,8 +23,14 @@ for (const file of files) {
     const script = JSON.parse(content);
     
     // 计算文件的SHA-256哈希值
-    const hash = crypto.createHash('sha256').update(content).digest('hex');
-    
+    // 计算哈希仅使用这几个字段：script.content, script.info, script.buttons
+    const hashContent = JSON.stringify({
+      content: script.content,
+      info: script.info,
+      buttons: script.buttons
+    });
+    const hash = crypto.createHash('sha256').update(hashContent).digest('hex');
+
     // 提取需要的信息
     scripts.push({
       id: script.id,
