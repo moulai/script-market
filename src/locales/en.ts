@@ -217,7 +217,9 @@ const en = {
       downloadFailed: 'Download failed',
       copySuccess: 'Copy successful',
       copyFailed: 'Copy failed',
-      noData: 'No script data found'
+      noData: 'No script data found',
+      history: 'Version history',
+      viewVersionHistory: 'View script version history'
     },
     
     // Footer

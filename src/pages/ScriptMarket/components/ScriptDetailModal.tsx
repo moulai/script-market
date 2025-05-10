@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Typography, Tag, Button, Space, Divider, message, Spin, Descriptions } from 'antd';
-import { DownloadOutlined, CopyOutlined, CloseOutlined, IdcardOutlined } from '@ant-design/icons';
+import { Modal, Typography, Tag, Button, Space, Divider, message, Spin, Descriptions, Tooltip } from 'antd';
+import { DownloadOutlined, CopyOutlined, CloseOutlined, IdcardOutlined, HistoryOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { ScriptDetailModalProps } from '../types';
@@ -8,6 +8,7 @@ import { IScript } from '../../../types/script';
 import { downloadScript, copyToClipboard } from '../utils/downloadUtils';
 import { formatDate } from '../utils/filterUtils';
 import { getTagColor } from '../../../utils/tagUtils';
+import githubConfig from '../../../config/githubConfig';
 
 const { Title, Text } = Typography;
 
@@ -54,6 +55,16 @@ const ScriptDetailModal: React.FC<ScriptDetailModalProps> = ({
     
     fetchDetail();
   }, [visible, scriptId]);
+  
+  // 打开脚本历史版本页面
+  const openVersionHistory = () => {
+    if (!scriptDetail) return;
+    
+    const { owner, repo, branch } = githubConfig;
+    const historyUrl = `https://github.com/${owner}/${repo}/commits/${branch}/public/script_dist/${scriptDetail.id}.json`;
+    
+    window.open(historyUrl, '_blank');
+  };
   
   // 处理下载脚本
   const handleDownload = () => {
@@ -125,6 +136,17 @@ const ScriptDetailModal: React.FC<ScriptDetailModalProps> = ({
             </Descriptions.Item>
             <Descriptions.Item label={t('scriptMarket.detail.version') || "版本"}>
               {scriptDetail.version}
+              <Tooltip title={t('scriptMarket.detail.viewVersionHistory') || "查看历史版本"}>
+                <Button 
+                  type="link" 
+                  icon={<HistoryOutlined />} 
+                  size="small"
+                  onClick={openVersionHistory}
+                  style={{ marginLeft: 8, padding: '0 4px' }}
+                >
+                  {t('scriptMarket.detail.history') || "历史版本"}
+                </Button>
+              </Tooltip>
             </Descriptions.Item>
             <Descriptions.Item label={t('scriptMarket.detail.createdAt') || "创建时间"}>
               {formatDate(scriptDetail.createdAt, 'full')}

@@ -218,7 +218,9 @@ const zh = {
       downloadFailed: '下载失败',
       copySuccess: '复制成功',
       copyFailed: '复制失败',
-      noData: '没有找到脚本数据'
+      noData: '没有找到脚本数据',
+      history: '历史版本',
+      viewVersionHistory: '查看脚本历史版本'
     },
     
     // 页脚
