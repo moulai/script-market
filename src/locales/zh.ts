@@ -212,8 +212,13 @@ const zh = {
       buttons: '按钮配置',
       visible: '可见',
       invisible: '隐藏',
-      download: '下载脚本',
+      download: '下载',
       copy: '复制内容',
+      importToSillyTavern: "导入",
+      importInitiated: "已发送导入请求至 {{target}}",
+      defaultAction: "执行操作",
+      importSuccess: "脚本已成功发送到 {{target}} ！",
+      importFailed: "发送脚本到 {{target}} 失败。",
       downloadSuccess: '下载成功',
       downloadFailed: '下载失败',
       copySuccess: '复制成功',
@@ -232,7 +237,11 @@ const zh = {
     
     // 错误信息
     error: {
-      title: '加载错误'
+      title: '加载错误',
+      postMessageNotInIframe: "无法发送消息：未在iframe中运行或父窗口不可访问。",
+      postMessageMissingOrigin: "无法发送消息：缺少targetOrigin参数。",
+      unknownAction: "未知操作",
+      strategyNotFound: "未找到动作目标 '{{actionTarget}}' 或默认动作 '{{defaultActionTarget}}' 的策略。"
     },
     
     // 空状态

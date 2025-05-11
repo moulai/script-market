@@ -211,8 +211,13 @@ const en = {
       buttons: 'Button configuration',
       visible: 'Visible',
       invisible: 'Hidden',
-      download: 'Download script',
+      download: 'Download',
       copy: 'Copy content',
+      importToSillyTavern: "Import",
+      importInitiated: "Import request sent to {{target}}",
+      defaultAction: "Perform Action",
+      importSuccess: "Script sent to {{target}} successfully!",
+      importFailed: "Failed to send script to {{target}} .",
       downloadSuccess: 'Download successful',
       downloadFailed: 'Download failed',
       copySuccess: 'Copy successful',
@@ -231,7 +236,11 @@ const en = {
     
     // Error messages
     error: {
-      title: 'Loading error'
+      title: 'Loading error',
+      postMessageNotInIframe: "Cannot send message: Not running in an iframe or parent window is inaccessible.",
+      postMessageMissingOrigin: "Cannot send message: Missing targetOrigin parameter.",
+      unknownAction: "Unknown action",
+      strategyNotFound: "Strategy not found for action target '{{actionTarget}}' or default action '{{defaultActionTarget}}'."
     },
     
     // Empty state

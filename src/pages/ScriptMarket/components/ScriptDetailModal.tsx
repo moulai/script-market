@@ -5,10 +5,11 @@ import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { ScriptDetailModalProps } from '../types';
 import { IScript } from '../../../types/script';
-import { downloadScript, copyToClipboard } from '../utils/downloadUtils';
+import { copyToClipboard } from '../utils/downloadUtils'; // downloadScript is now in scriptActionHandler
 import { formatDate } from '../utils/filterUtils';
 import { getTagColor } from '../../../utils/tagUtils';
 import githubConfig from '../../../config/githubConfig';
+import { handleScriptAction, getActionButtonLabel } from '../utils/scriptActionHandler';
 
 const { Title, Text } = Typography;
 
@@ -65,19 +66,12 @@ const ScriptDetailModal: React.FC<ScriptDetailModalProps> = ({
     
     window.open(historyUrl, '_blank');
   };
-  
-  // 处理下载脚本
-  const handleDownload = () => {
+
+  // 处理主操作（下载或导入）
+  const handlePrimaryAction = () => {
     if (!scriptDetail) return;
-    
-    const fileName = `${scriptDetail.id}.json`;
-    const success = downloadScript(scriptDetail.id, JSON.stringify(scriptDetail, null, 2), fileName);
-    
-    if (success) {
-      message.success(t('scriptMarket.detail.downloadSuccess') || '下载成功');
-    } else {
-      message.error(t('scriptMarket.detail.downloadFailed') || '下载失败');
-    }
+    const urlParams = new URLSearchParams(window.location.search);
+    handleScriptAction(scriptDetail, urlParams, t);
   };
   
   // 处理复制脚本内容
@@ -119,6 +113,9 @@ const ScriptDetailModal: React.FC<ScriptDetailModalProps> = ({
       );
     }
     
+    const urlParams = new URLSearchParams(window.location.search);
+    const primaryButtonLabel = getActionButtonLabel(urlParams, t);
+
     return (
       <>
         <div className="script-detail-header">
@@ -217,16 +214,16 @@ const ScriptDetailModal: React.FC<ScriptDetailModalProps> = ({
         
         <div className="script-detail-actions" style={{ marginTop: 24 }}>
           <Space>
-            <Button 
-              type="primary" 
-              icon={<DownloadOutlined />} 
-              onClick={handleDownload}
+            <Button
+              type="primary"
+              icon={<DownloadOutlined />} // 图标可能也需要根据操作类型动态改变，暂时保留DownloadOutlined
+              onClick={handlePrimaryAction}
               style={{ color: '#fff' }}
             >
-              {t('scriptMarket.detail.download') || "下载脚本"}
+              {primaryButtonLabel}
             </Button>
-            <Button 
-              icon={<CopyOutlined />} 
+            <Button
+              icon={<CopyOutlined />}
               onClick={handleCopy}
             >
               {t('scriptMarket.detail.copy') || "复制内容"}
