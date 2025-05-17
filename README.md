@@ -14,6 +14,7 @@
 - 🧩 模块化设计，易于扩展和维护
 - 🎨 美观直观的用户界面
 - 🔑 简单但有效的密码管理机制
+- 🔄 动态下载/导入按钮，支持与其他应用集成
 
 ## 项目预览
 
@@ -192,7 +193,9 @@ const passwordSalt = import.meta.env.VITE_PASSWORD_SALT || 'your_password_salt';
 
 JSON文件包含所有脚本信息，包括ID、名称、作者、版本、标签、内容、按钮配置等。
 
-## 上传页面的表单预填充功能
+## 特性
+
+### 上传页面的表单预填充功能
 
 脚本市场上传页面支持通过外部系统预填充表单数据，方便从其他系统直接调用并自动填写表单。
 
@@ -200,7 +203,7 @@ JSON文件包含所有脚本信息，包括ID、名称、作者、版本、标�
 
 支持以下两种方式：
 
-### 1. URL参数方式
+#### 1. URL参数方式
 
 可以通过URL参数传递JSON数据来预填充表单：
 
@@ -216,7 +219,7 @@ JSON文件包含所有脚本信息，包括ID、名称、作者、版本、标�
 
 注意：由于项目使用 HashRouter，URL 中包含 `#` 符号，参数位于哈希部分之后。
 
-### 2. postMessage API方式
+#### 2. postMessage API方式
 
 可以通过浏览器的postMessage API从父窗口向脚本市场页面发送数据：
 
@@ -236,7 +239,7 @@ const iframe = document.getElementById('script-market-iframe');
 iframe.contentWindow.postMessage(scriptData, 'https://your-script-market-url.com/#/upload');
 ```
 
-### 支持的字段
+#### 支持的字段
 
 预填充功能支持以下字段：
 
@@ -250,16 +253,21 @@ iframe.contentWindow.postMessage(scriptData, 'https://your-script-market-url.com
 - `info`: 备注信息
 - `buttons`: 按钮配置数组
 
-## 脚本目录页面
+### 目录页面的动态下载/导入按钮
 
-脚本目录页面提供了一个简洁的界面，用于浏览、搜索和下载脚本。
+脚本市场支持根据 URL 参数动态切换"下载"按钮的行为，可以在"直接下载脚本文件"和自定义策略（如"通过 `window.postMessage` 将脚本数据导入到父窗口"）两种模式之间切换。
 
-### 主要功能
+#### 功能目的
 
-- **筛选功能**：支持按标签、作者、名称等多维度筛选
-- **搜索功能**：快速查找所需脚本
-- **详情查看**：点击脚本卡片或行可查看脚本的详细信息，包括代码预览
-- **下载功能**：一键下载所需脚本
+该功能主要用于将脚本市场作为 iframe 嵌入其他应用时，能够直接将脚本导入到宿主应用，而不需要用户手动下载后再上传。
+
+#### 核心实现
+
+该功能的核心逻辑主要由 `src/pages/ScriptMarket/utils/scriptActionHandler.ts` 处理，采用策略模式实现不同的操作行为。如要增添新的操作行为，只需在该文件中添加新的策略函数。
+
+#### 如何触发导入模式
+
+- 通过 URL 参数 `source` 来指定操作目标。例如，`?source=example` 会激活向 Example 导入的模式（如果支持，否则使用默认的下载模式）。
 
 ## 技术栈
 
