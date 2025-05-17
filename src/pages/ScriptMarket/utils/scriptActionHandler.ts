@@ -20,7 +20,7 @@ export interface ActionStrategy {
 
 // 下载策略
 const downloadStrategy: ActionStrategy = {
-  execute: (script, params, t) => {
+  execute: (script, _params, t) => {
     const fileName = `${script.id}.json`;
     // 注意：原始 downloadScript 返回 boolean，这里直接调用并显示消息
     // 如果 downloadScript 内部已经处理了消息，则此处可以简化
